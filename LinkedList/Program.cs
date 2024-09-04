@@ -1,9 +1,10 @@
-﻿public class Node
+﻿using System.Diagnostics.Metrics;
+
+public class Node
 {
     private int value;
-    private Node next; // מצביע לצומת הבא מסוג צומת
+    private Node next; 
 
-    // בנאי שמקבל ערך ראשוני ומאתחל את הצומת
     public Node(int data)
     {
         value = data;
@@ -31,7 +32,8 @@
 
 public class LinkedList
 {
-    private Node head; // ראש הרשימה
+    // ראש הרשימה
+    private Node head; 
 
     // בנאי ריק שיוצר רשימה ריקה
     public LinkedList()
@@ -236,6 +238,142 @@ public class LinkedList
         return -1; 
     }
 }
+
+
+
+public class Stack
+{
+    private Node head { get; set; }
+    private int Count { get; set; }
+    public Stack()
+    {
+        head = null;
+        Count = 0;
+    }
+
+    public Stack(int value)
+    {
+        head = new Node(value);
+        Count++;
+    }
+
+
+    public void push(int data)
+    {
+        Node newNode = new Node(data);
+        newNode.SetNext(head);
+        head = newNode;
+        Count++;
+    }
+
+    public int pop()
+    {
+        if(head == null)
+        {
+            return -1;
+        }
+        int value = head.GetValue();
+        head = head.GetNext();
+        return value;
+    }
+
+    public int peak()
+    {
+        if(head == null)
+        {
+            return -1;
+        }
+        return head.GetValue();
+    }
+    public static int count(Stack stack)
+    {
+        return stack.Count;
+    }
+}
+
+
+
+public class Queue
+{
+    public Node head { get; set; }
+    public int Count { get; set; }
+
+    public Queue()
+    {
+        head = null;
+        Count = 0;
+    }
+
+    public Queue(int value)
+    {
+        head= new Node(value);
+        Count++;
+    }
+
+    public int Dequeue()
+    {
+        if (head == null)
+        {
+            return -1;
+        }
+        int value = head.GetValue();
+        head = head.GetNext();
+        return value;
+    }
+
+    public void Enqueue(int value)
+    {
+        if (head != null)
+        {
+            Node node = new Node(value);
+            head = node;
+        }
+        Node current = head;
+        while (head.GetNext() != null)
+        {
+            current = head.GetNext();
+        }
+        current.SetNext(new Node(value));
+    }
+
+    public void peek()
+    {
+
+    }
+
+    public int count(Queue queue)
+    {
+        return queue.Count;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //class Program
